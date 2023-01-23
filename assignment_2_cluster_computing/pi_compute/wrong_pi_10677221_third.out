@@ -1,0 +1,74 @@
+OpenMP parallelism
+
+CPUS:  1
+Pi estimate: 3.14159265308807666983, obtained in 83.942842 seconds with niter = 2000000000 
+DONE 
+CPUS:  2
+Pi estimate: 3.14159265308805046857, obtained in 42.083370 seconds with niter = 2000000000 
+DONE 
+CPUS:  3
+Pi estimate: 3.14159265308871527012, obtained in 28.533135 seconds with niter = 2000000000 
+DONE 
+CPUS:  4
+Pi estimate: 3.14159265308925794713, obtained in 21.490255 seconds with niter = 2000000000 
+DONE 
+CPUS:  5
+Pi estimate: 3.14159265308905855107, obtained in 18.162866 seconds with niter = 2000000000 
+DONE 
+CPUS:  6
+Pi estimate: 3.14159265308898305591, obtained in 15.137145 seconds with niter = 2000000000 
+DONE 
+CPUS:  7
+Pi estimate: 3.14159265308951285434, obtained in 13.447274 seconds with niter = 2000000000 
+DONE 
+CPUS:  8
+Pi estimate: 3.14159265308921042958, obtained in 11.766468 seconds with niter = 2000000000 
+DONE 
+CPUS:  9
+Pi estimate: 3.14159265308904345204, obtained in 11.402598 seconds with niter = 2000000000 
+DONE 
+CPUS:  10
+Pi estimate: 3.14159265308940760519, obtained in 10.587093 seconds with niter = 2000000000 
+DONE 
+CPUS:  11
+Pi estimate: 3.14159265308890267576, obtained in 9.887652 seconds with niter = 2000000000 
+DONE 
+CPUS:  12
+Pi estimate: 3.14159265308897328595, obtained in 8.790884 seconds with niter = 2000000000 
+DONE 
+CPUS:  13
+Pi estimate: 3.14159265308876500811, obtained in 8.133551 seconds with niter = 2000000000 
+DONE 
+CPUS:  14
+Pi estimate: 3.14159265308874191547, obtained in 7.550732 seconds with niter = 2000000000 
+DONE 
+CPUS:  15
+Pi estimate: 3.14159265308930502059, obtained in 7.367529 seconds with niter = 2000000000 
+DONE 
+CPUS:  16
+Pi estimate: 3.14159265308932411642, obtained in 6.622844 seconds with niter = 2000000000 
+DONE 
+CPUS:  17
+Pi estimate: 3.14159265308931789917, obtained in 7.031592 seconds with niter = 2000000000 
+DONE 
+CPUS:  18
+Pi estimate: 3.14159265308949908757, obtained in 7.183058 seconds with niter = 2000000000 
+DONE 
+CPUS:  19
+Pi estimate: 3.14159265308951507478, obtained in 8.196905 seconds with niter = 2000000000 
+DONE 
+CPUS:  20
+Pi estimate: 3.14159265308932633687, obtained in 7.641270 seconds with niter = 2000000000 
+DONE 
+CPUS:  21
+Pi estimate: 3.14159265308925128579, obtained in 7.920080 seconds with niter = 2000000000 
+DONE 
+CPUS:  22
+Pi estimate: 3.14159265308953594698, obtained in 7.311526 seconds with niter = 2000000000 
+DONE 
+CPUS:  23
+Pi estimate: 3.14159265308965496288, obtained in 7.150002 seconds with niter = 2000000000 
+DONE 
+CPUS:  24
+Pi estimate: 3.14159265308979707143, obtained in 6.932445 seconds with niter = 2000000000 
+DONE 

@@ -1,0 +1,11 @@
+OpenMP parallelism
+
+CPUS:  16
+Pi estimate: 3.14159262158972207857, obtained in 0.143534 seconds with niter = 31250000 
+Pi estimate: 3.14159263758957907342, obtained in 0.219651 seconds with niter = 62500000 
+Pi estimate: 3.14159264558972584069, obtained in 0.439305 seconds with niter = 125000000 
+Pi estimate: 3.14159264958986250704, obtained in 0.850081 seconds with niter = 250000000 
+Pi estimate: 3.14159265159010692159, obtained in 1.679143 seconds with niter = 500000000 
+Pi estimate: 3.14159265259020425987, obtained in 3.323550 seconds with niter = 1000000000 
+Pi estimate: 3.14159265308932411642, obtained in 6.600829 seconds with niter = 2000000000 
+DONE 
