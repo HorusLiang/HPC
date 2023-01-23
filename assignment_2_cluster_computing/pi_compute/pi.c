@@ -5,9 +5,8 @@
 
 int main (int argc, char *argv[])
 {
-
   //initialize variables
-  int i;
+  long i;
   // printf("number of thread used now: %d \n",omp_get_num_threads()); // history version
   printf("number of thread used max now: %d \n",omp_get_max_threads());
 
@@ -25,7 +24,9 @@ int main (int argc, char *argv[])
     #pragma omp parallel for reduction(+ : pi)
     for(i = 0; i < niter[j]; i++)
     {
-      pi = pi + pow(-1, i) * (4.0 / (2*((double) i)+1));
+      double t=0.0;
+      t= pow(-1, i) * (4.0 / (2*((double) i)+1));
+      pi = pi + t;
     } /* Reduction operation is done. All threads join master thread and disband */
 
     // Stop timing
