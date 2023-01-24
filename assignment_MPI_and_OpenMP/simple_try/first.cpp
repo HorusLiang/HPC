@@ -42,7 +42,26 @@ int count_live_neighbour_cell(int a[row][col], int r, int c)
     return count;
 }
 
- 
+void calculate_next_generation(int a[][col], int b[][col]) {
+    int neighbour_live_cell;
+    for (int i = 0; i < row; i++) {
+        for (int j = 0; j < col; j++) {
+            neighbour_live_cell = count_live_neighbour_cell(a, i, j);
+            if (a[i][j] == 1 && (neighbour_live_cell == 2 || neighbour_live_cell == 3)) {
+                if (!is_border(i, j)) {
+                    b[i][j] = 1;
+                }
+            } else if (a[i][j] == 0 && neighbour_live_cell == 3) {
+                if (!is_border(i, j)) {
+                    b[i][j] = 1;
+                }
+            } else {
+                b[i][j] = 0;
+            }
+        }
+    }
+}
+
 int main()
 {
     for (int i = 0; i < BEEHIVE_HEIGHT; i++) {
@@ -54,7 +73,6 @@ int main()
 
     int a[row][col], b[row][col];
     int i, j;
-    int neighbour_live_cell;
  
     // generate matrix canvas with random values (live and
     // dead cells)
@@ -80,31 +98,7 @@ int main()
     }
  
     // next canvas values based on live neighbour count
-    for (i = 0; i < row; i++) {
-        for (j = 0; j < col; j++) {
-            neighbour_live_cell
-                = count_live_neighbour_cell(a, i, j);
-            if (a[i][j] == 1
-                && (neighbour_live_cell == 2
-                    || neighbour_live_cell == 3)) {
-                if(!is_border(i,j)){
-                    b[i][j] = 1;
-                }
-                
-            }
- 
-            else if (a[i][j] == 0
-                     && neighbour_live_cell == 3) {
-                if(!is_border(i,j)){
-                    b[i][j] = 1;
-                }
-            }
- 
-            else {
-                b[i][j] = 0;
-            }
-        }
-    }
+    calculate_next_generation(a,b);
  
     // print next generation
     cout << "\nNext Generation:";
