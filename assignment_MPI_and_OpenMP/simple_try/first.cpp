@@ -4,11 +4,11 @@
 using namespace std;
  
 // change row and column value to set the canvas size
-const int row = 5;
-const int col = 4;
+const int row = 10;
+const int col = 10;
  
 // creates row boundary
-int row_line()
+void row_line()
 {
     cout << endl;
     for (int i = 0; i < col; i++) {
@@ -61,7 +61,18 @@ void calculate_next_generation(int a[][col], int b[][col]) {
         }
     }
 }
-
+void calculate_n_generation(int a[][col], int b[][col],int time){
+    for(int i=0;i<time;i++){
+        calculate_next_generation(a,b);
+    }
+}
+void insert_pattern(uint8_t pattern[][BEEHIVE_WIDTH], int canvas[][col], int pattern_row, int pattern_col, int canvas_row, int canvas_col, int start_row, int start_col) {
+    for (int i = 0; i < pattern_row; i++) {
+        for (int j = 0; j < pattern_col; j++) {
+            canvas[i + start_row][j + start_col] = pattern[i][j];
+        }
+    }
+}
 int main()
 {
     for (int i = 0; i < BEEHIVE_HEIGHT; i++) {
@@ -70,6 +81,7 @@ int main()
         }
         std::cout << std::endl;
     }
+    
 
     int a[row][col], b[row][col];
     int i, j;
@@ -81,10 +93,13 @@ int main()
             if (is_border(i,j)) {
                 a[i][j] = 0;
             } else {
-                a[i][j] = rand() % 2;
+                // a[i][j] = rand() % 2;
+                a[i][j]=0;
             }
         }
     }
+
+    insert_pattern(beehive,a,BEEHIVE_HEIGHT,BEEHIVE_WIDTH,row,col,1,1);
  
     // print array matrix
     cout << "Initial Stage:";
@@ -98,7 +113,7 @@ int main()
     }
  
     // next canvas values based on live neighbour count
-    calculate_next_generation(a,b);
+    calculate_n_generation(a,b,10);
  
     // print next generation
     cout << "\nNext Generation:";
