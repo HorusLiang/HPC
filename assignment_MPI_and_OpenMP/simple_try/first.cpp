@@ -5,8 +5,8 @@
 using namespace std;
  
 // change row and column value to set the canvas size
-const int ROW = 1000;
-const int COL = 1000;
+const int ROW = 900;
+const int COL = 900;
 // const int PATTERN_ROW=GLIDER_HEIGHT;
 // const int PATTERN_COL=GLIDER_WIDTH;
 
@@ -73,8 +73,16 @@ void print_2d_array(int a[][COL]) {
         row_line();
     }
 }
-
+void init_canvas(int a[][COL]){
+    int i, j;
+    for (i = 0; i < ROW; i++) {
+        for (j = 0; j < COL; j++) {
+            a[i][j]=0;  
+        }
+    }
+}
 void calculate_next_generation(int a[][COL], int b[][COL]) {
+    init_canvas(b);
     int neighbour_live_cell;
     for (int i = 0; i < ROW; i++) {
         for (int j = 0; j < COL; j++) {
@@ -93,14 +101,7 @@ void calculate_next_generation(int a[][COL], int b[][COL]) {
         }
     }
 }
-void init_canvas(int a[][COL]){
-    int i, j;
-    for (i = 0; i < ROW; i++) {
-        for (j = 0; j < COL; j++) {
-            a[i][j]=0;  
-        }
-    }
-}
+
 void calculate_n_generation(int a[][COL], int b[][COL],int time){
     // int res[ROW][COL];
     // init_canvas(res);
@@ -167,7 +168,11 @@ void grower_test(int generation,int expected){
     insert_pattern(grower,a,PATTERN_ROW,PATTERN_COL,ROW,COL,300,300);
 
     calculate_n_generation(a,b,generation);
-    test_count_live_cell(b,expected);
+    if(generation%2==0){
+        test_count_live_cell(a,expected);
+    }else{
+        test_count_live_cell(b,expected);
+    }
 }
 
 int main()
@@ -176,7 +181,7 @@ int main()
     // beehive_test(10,6);
     
     // grower_test(100,138);
-    grower_test(0,0);
+    grower_test(0,20);
     grower_test(1,23);
     grower_test(2,24);
     grower_test(3,28);
