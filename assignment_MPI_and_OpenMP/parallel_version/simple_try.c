@@ -186,6 +186,7 @@ int main()
     MPI_Init(NULL, NULL);
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
     MPI_Comm_size(MPI_COMM_WORLD, &num_procs);
+    printf("num_procs:%d \n",num_procs);
 
     rows_per_proc = (int)ceil((double)ROW / num_procs);
     start_row = rank * rows_per_proc;

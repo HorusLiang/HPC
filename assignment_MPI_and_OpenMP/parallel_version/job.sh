@@ -12,20 +12,23 @@ module load GCC
 echo "OpenMP and MPI parallelism"
 echo
 
-for nodes in 1 2; do
-  for tasks in 3 4; do
-    for cpus in 1 2; do
+for nodes in 1; do
+  for tasks in 1; do
+    for cpus in {1..16}; do
       # Set the values for the job
-      #SBATCH --nodes=$nodes
-      #SBATCH --ntasks=$tasks
-      #SBATCH --cpus-per-task=$cpus
+      if [ $((tasks*cpus)) -le $((nodes*16)) ] && [ $tasks -ge $nodes ] ; then
+        export SLURM_NODES=$nodes
+        export SLURM_NTASKS=$tasks
+        export SLURM_CPUS_PER_TASK=$cpus
 
-      export OMP_NUM_THREADS=$cpus
+        export OMP_NUM_THREADS=$cpus
 
-      echo "Nodes: " $nodes " Tasks: " $tasks " THREADS: " $OMP_NUM_THREADS " CPU: " $cpus
-      echo "Nodes: " $nodes " Tasks: " $tasks " THREADS: " $OMP_NUM_THREADS " CPU: " $cpus >&2
-      ./simple_try
-      echo "DONE"
+        echo "Nodes: " $nodes " Tasks: " $tasks " THREADS: " $OMP_NUM_THREADS " CPU: " $cpus
+        echo "Nodes: " $nodes " Tasks: " $tasks " THREADS: " $OMP_NUM_THREADS " CPU: " $cpus >&2
+        mpirun --npernode $SLURM_CPUS_PER_TASK -np $SLURM_NTASKS  ./simple_try
+        echo "DONE"
+      fi
     done
   done
 done
+
