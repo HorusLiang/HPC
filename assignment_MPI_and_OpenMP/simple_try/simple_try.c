@@ -1,8 +1,7 @@
-#include <iostream>
+#include <stdio.h>
 #include "./headers/beehive.h"
 #include "./headers/glider.h"
 #include "./headers/grower.h"
-using namespace std;
  
 // change row and column value to set the canvas size
 const int ROW = 900;
@@ -17,22 +16,11 @@ const int PATTERN_ROW=GROWER_HEIGHT;
 const int PATTERN_COL=GROWER_WIDTH;
 
 
-
-// creates row boundary
-void row_line()
-{
-    cout << endl;
-    for (int i = 0; i < COL; i++) {
-        cout << " -----";
-    }
-    cout << endl;
-}
-
-bool is_border(int i,int j){
+int is_border(int i,int j){
     if (i == 0 || i == ROW-1 || j == 0 || j == COL-1){
-        return true;
+        return 1;
     }
-    return false;
+    return -1;
 }
  
 // returns the count of alive neighbours
@@ -63,16 +51,7 @@ int count_live_cell(int a[][COL]) {
     }
     return count;
 }
-void print_2d_array(int a[][COL]) {
-    row_line();
-    for (int i = 0; i < ROW; i++) {
-        cout << ":";
-        for (int j = 0; j < COL; j++) {
-            cout << "  " << a[i][j] << "  :";
-        }
-        row_line();
-    }
-}
+
 void init_canvas(int a[][COL]){
     int i, j;
     for (i = 0; i < ROW; i++) {
@@ -88,11 +67,11 @@ void calculate_next_generation(int a[][COL], int b[][COL]) {
         for (int j = 0; j < COL; j++) {
             neighbour_live_cell = count_live_neighbour_cell(a, i, j);
             if (a[i][j] == 1 && (neighbour_live_cell == 2 || neighbour_live_cell == 3)) {
-                if (!is_border(i, j)) {
+                if (is_border(i, j) == -1) {
                     b[i][j] = 1;
                 }
             } else if (a[i][j] == 0 && neighbour_live_cell == 3) {
-                if (!is_border(i, j)) {
+                if (is_border(i, j) == -1) {
                     b[i][j] = 1;
                 }
             } else {
@@ -194,4 +173,3 @@ int main()
     grower_test(10,49);
     return 0;
 }
-//https://www.geeksforgeeks.org/program-for-conways-game-of-life/
