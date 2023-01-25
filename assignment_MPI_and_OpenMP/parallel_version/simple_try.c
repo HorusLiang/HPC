@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <omp.h>
+#include <mpi.h>
 #include "./headers/beehive.h"
 #include "./headers/glider.h"
 #include "./headers/grower.h"
@@ -64,6 +65,19 @@ void init_canvas(int a[][COL]){
 void calculate_next_generation(int a[][COL], int b[][COL]) {
     init_canvas(b);
     int neighbour_live_cell;
+
+    // Initialize MPI
+    // int rank, num_procs;
+    // MPI_Init(NULL, NULL);
+    // MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+    // MPI_Comm_size(MPI_COMM_WORLD, &num_procs);
+
+    // Divide loop iterations among processes
+    // int rows_per_proc = ROW / num_procs;
+    // int start_row = rank * rows_per_proc;
+    // int end_row = start_row + rows_per_proc;
+    
+    #pragma omp parallel for
     for (int i = 0; i < ROW; i++) {
         for (int j = 0; j < COL; j++) {
             neighbour_live_cell = count_live_neighbour_cell(a, i, j);
@@ -85,6 +99,9 @@ void calculate_next_generation(int a[][COL], int b[][COL]) {
 void calculate_n_generation(int a[][COL], int b[][COL],int time){
     // int res[ROW][COL];
     // init_canvas(res);
+
+    
+
     for (int i = 0; i < time; i++) {
         if (i % 2 == 0) {
             calculate_next_generation(a, b);
@@ -157,6 +174,7 @@ void grower_test(int generation,int expected){
 
 int main()
 {   
+    
     double start,end;
     start=omp_get_wtime();
     // glider_test(50,5);
@@ -173,8 +191,8 @@ int main()
     // grower_test(7,35);
     // grower_test(8,43);
     // grower_test(9,41);
-    // grower_test(10,49);
-    grower_test(5000,3647);
+    grower_test(10,49);
+    // grower_test(5000,3647);
     end=omp_get_wtime();
     // Print result
     printf("Obtained in %f seconds\n",end - start);
