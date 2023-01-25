@@ -1,0 +1,82 @@
+OpenMP and MPI parallelism
+
+Nodes:  1  Tasks:  1  THREADS:  1  CPU:  1
+num_procs:1 
+Test passed: count_live_cell(a) returned 49
+Obtained in 2.819170 seconds
+DONE
+Nodes:  1  Tasks:  1  THREADS:  2  CPU:  2
+num_procs:1 
+Test passed: count_live_cell(a) returned 49
+Obtained in 2.806057 seconds
+DONE
+Nodes:  1  Tasks:  1  THREADS:  3  CPU:  3
+num_procs:1 
+Test passed: count_live_cell(a) returned 49
+Obtained in 2.815673 seconds
+DONE
+Nodes:  1  Tasks:  1  THREADS:  4  CPU:  4
+num_procs:1 
+Test passed: count_live_cell(a) returned 49
+Obtained in 2.806308 seconds
+DONE
+Nodes:  1  Tasks:  1  THREADS:  5  CPU:  5
+num_procs:1 
+Test passed: count_live_cell(a) returned 49
+Obtained in 2.824356 seconds
+DONE
+Nodes:  1  Tasks:  1  THREADS:  6  CPU:  6
+num_procs:1 
+Test passed: count_live_cell(a) returned 49
+Obtained in 2.809388 seconds
+DONE
+Nodes:  1  Tasks:  1  THREADS:  7  CPU:  7
+num_procs:1 
+Test passed: count_live_cell(a) returned 49
+Obtained in 2.807125 seconds
+DONE
+Nodes:  1  Tasks:  1  THREADS:  8  CPU:  8
+num_procs:1 
+Test passed: count_live_cell(a) returned 49
+Obtained in 2.809372 seconds
+DONE
+Nodes:  1  Tasks:  1  THREADS:  9  CPU:  9
+num_procs:1 
+Test passed: count_live_cell(a) returned 49
+Obtained in 2.812786 seconds
+DONE
+Nodes:  1  Tasks:  1  THREADS:  10  CPU:  10
+num_procs:1 
+Test passed: count_live_cell(a) returned 49
+Obtained in 2.811381 seconds
+DONE
+Nodes:  1  Tasks:  1  THREADS:  11  CPU:  11
+num_procs:1 
+Test passed: count_live_cell(a) returned 49
+Obtained in 2.830181 seconds
+DONE
+Nodes:  1  Tasks:  1  THREADS:  12  CPU:  12
+num_procs:1 
+Test passed: count_live_cell(a) returned 49
+Obtained in 2.809343 seconds
+DONE
+Nodes:  1  Tasks:  1  THREADS:  13  CPU:  13
+num_procs:1 
+Test passed: count_live_cell(a) returned 49
+Obtained in 2.809872 seconds
+DONE
+Nodes:  1  Tasks:  1  THREADS:  14  CPU:  14
+num_procs:1 
+Test passed: count_live_cell(a) returned 49
+Obtained in 2.809884 seconds
+DONE
+Nodes:  1  Tasks:  1  THREADS:  15  CPU:  15
+num_procs:1 
+Test passed: count_live_cell(a) returned 49
+Obtained in 2.812977 seconds
+DONE
+Nodes:  1  Tasks:  1  THREADS:  16  CPU:  16
+num_procs:1 
+Test passed: count_live_cell(a) returned 49
+Obtained in 2.809814 seconds
+DONE
