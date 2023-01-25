@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <omp.h>
 #include <mpi.h>
+#include <math.h>
 #include "./headers/beehive.h"
 #include "./headers/glider.h"
 #include "./headers/grower.h"
@@ -17,6 +18,14 @@ const int COL = 3000;
 const int PATTERN_ROW=GROWER_HEIGHT;
 const int PATTERN_COL=GROWER_WIDTH;
 
+// Initialize MPI
+int rank, num_procs;
+
+
+// Divide loop iterations among processes
+int rows_per_proc;
+int start_row ;
+int end_row;
 
 int is_border(int i,int j){
     if (i == 0 || i == ROW-1 || j == 0 || j == COL-1){
@@ -44,41 +53,38 @@ int count_live_neighbour_cell(int a[ROW][COL], int r, int c)
 }
 int count_live_cell(int a[][COL]) {
     int count = 0;
-    for (int i = 0; i < ROW; i++) {
+    #pragma omp parallel for
+    for  (int i = start_row; i < end_row; i++)  {
         for (int j = 0; j < COL; j++) {
             if (a[i][j] == 1) {
                 count++;
             }
         }
     }
+    // Gather all the results from each process to the root process
+    MPI_Gather(a[start_row], rows_per_proc*COL, MPI_INT, a, rows_per_proc*COL, MPI_INT, 0, MPI_COMM_WORLD);
     return count;
 }
 
 void init_canvas(int a[][COL]){
     int i, j;
-    for (i = 0; i < ROW; i++) {
+
+    #pragma omp parallel for
+    for (i = start_row; i < end_row; i++) {
         for (j = 0; j < COL; j++) {
             a[i][j]=0;  
         }
     }
+    // Gather all the results from each process to the root process
+    MPI_Gather(a[start_row], rows_per_proc*COL, MPI_INT, a, rows_per_proc*COL, MPI_INT, 0, MPI_COMM_WORLD);
 }
 void calculate_next_generation(int a[][COL], int b[][COL]) {
     init_canvas(b);
     int neighbour_live_cell;
 
-    // Initialize MPI
-    // int rank, num_procs;
-    // MPI_Init(NULL, NULL);
-    // MPI_Comm_rank(MPI_COMM_WORLD, &rank);
-    // MPI_Comm_size(MPI_COMM_WORLD, &num_procs);
-
-    // Divide loop iterations among processes
-    // int rows_per_proc = ROW / num_procs;
-    // int start_row = rank * rows_per_proc;
-    // int end_row = start_row + rows_per_proc;
     
-    #pragma omp parallel for
-    for (int i = 0; i < ROW; i++) {
+    #pragma omp parallel for private(neighbour_live_cell)
+    for (int i = start_row; i < end_row; i++) {
         for (int j = 0; j < COL; j++) {
             neighbour_live_cell = count_live_neighbour_cell(a, i, j);
             if (a[i][j] == 1 && (neighbour_live_cell == 2 || neighbour_live_cell == 3)) {
@@ -94,6 +100,9 @@ void calculate_next_generation(int a[][COL], int b[][COL]) {
             }
         }
     }
+    // Gather all the results from each process to the root process
+    MPI_Gather(b[start_row], rows_per_proc*COL, MPI_INT, b, rows_per_proc*COL, MPI_INT, 0, MPI_COMM_WORLD);
+    
 }
 
 void calculate_n_generation(int a[][COL], int b[][COL],int time){
@@ -174,6 +183,15 @@ void grower_test(int generation,int expected){
 
 int main()
 {   
+    MPI_Init(NULL, NULL);
+    MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+    MPI_Comm_size(MPI_COMM_WORLD, &num_procs);
+
+    rows_per_proc = (int)ceil((double)ROW / num_procs);
+    start_row = rank * rows_per_proc;
+    end_row = start_row + rows_per_proc;
+    if(end_row > ROW) end_row = ROW;
+    
     
     double start,end;
     start=omp_get_wtime();
@@ -196,5 +214,8 @@ int main()
     end=omp_get_wtime();
     // Print result
     printf("Obtained in %f seconds\n",end - start);
+
+    // Finalize MPI
+    MPI_Finalize();
     return 0;
 }
