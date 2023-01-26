@@ -1,4 +1,5 @@
 OpenMP and MPI parallelism
+show the constraint that [ $cpus -ge $tasks ], else it can't be running successfully, and no error is detected by machine.
 
 Nodes:  1  Tasks:  1  THREADS:  1  CPU:  1
 Test passed: count_live_cell(a) returned 49
