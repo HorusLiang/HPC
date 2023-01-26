@@ -137,10 +137,14 @@ void insert_pattern(uint8_t pattern[][PATTERN_COL], int canvas[][COL], int patte
 
 void test_count_live_cell(int a[][COL],int expected_output) {
         int output = count_live_cell(a);
-        if (output == expected_output) {
-            printf("Test passed: count_live_cell(a) returned %d\n", output);
-        } else {
-            printf("Test failed: count_live_cell(a) returned %d, expected %d\n", output, expected_output);
+        int final_output;
+        MPI_Reduce(&output, &final_output, 1, MPI_INT, MPI_SUM, 0, MPI_COMM_WORLD);
+        if(rank==0){
+            if (final_output == expected_output) {
+            printf("Test passed: count_live_cell(a) returned %d\n", final_output);
+            } else {
+                printf("Test failed: count_live_cell(a) returned %d, expected %d\n", final_output, expected_output);
+            }
         }
 }
 // void glider_test(int generation,int expected){
@@ -186,7 +190,7 @@ int main()
     MPI_Init(NULL, NULL);
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
     MPI_Comm_size(MPI_COMM_WORLD, &num_procs);
-    printf("num_procs:%d \n",num_procs);
+    // printf("num_procs:%d \n",num_procs);
 
     rows_per_proc = (int)ceil((double)ROW / num_procs);
     start_row = rank * rows_per_proc;
@@ -195,6 +199,7 @@ int main()
     
     
     double start,end;
+    
     start=omp_get_wtime();
     // glider_test(50,5);
     // beehive_test(10,6);
@@ -214,7 +219,13 @@ int main()
     // grower_test(5000,3647);
     end=omp_get_wtime();
     // Print result
-    printf("Obtained in %f seconds\n",end - start);
+    // printf("Obtained in %f seconds, rank=%d\n",end - start,rank);
+    if(rank==0){
+        printf("Obtained in %f seconds\n",end - start);
+    }
+    
+    
+    
 
     // Finalize MPI
     MPI_Finalize();
