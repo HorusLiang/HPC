@@ -1,0 +1,191 @@
+OpenMP and MPI parallelism
+
+Nodes:  1  Tasks:  1  THREADS:  1  CPU:  1
+Test passed: count_live_cell(a) returned 49
+Obtained in 3.074179 seconds, rank=0
+Obtained in 3.074179 seconds
+DONE
+Nodes:  1  Tasks:  1  THREADS:  2  CPU:  2
+Test passed: count_live_cell(a) returned 49
+Obtained in 3.061612 seconds, rank=0
+Obtained in 3.061612 seconds
+DONE
+Nodes:  1  Tasks:  1  THREADS:  4  CPU:  4
+Test passed: count_live_cell(a) returned 49
+Obtained in 3.075794 seconds, rank=0
+Obtained in 3.075794 seconds
+DONE
+Nodes:  1  Tasks:  1  THREADS:  8  CPU:  8
+Test passed: count_live_cell(a) returned 49
+Obtained in 3.061884 seconds, rank=0
+Obtained in 3.061884 seconds
+DONE
+Nodes:  1  Tasks:  1  THREADS:  16  CPU:  16
+Test passed: count_live_cell(a) returned 49
+Obtained in 3.074357 seconds, rank=0
+Obtained in 3.074357 seconds
+DONE
+Nodes:  1  Tasks:  2  THREADS:  1  CPU:  1
+DONE
+Nodes:  1  Tasks:  2  THREADS:  2  CPU:  2
+Test passed: count_live_cell(a) returned 49
+Obtained in 1.608244 seconds, rank=0
+Obtained in 1.608244 seconds
+Obtained in 1.608211 seconds, rank=1
+DONE
+Nodes:  1  Tasks:  2  THREADS:  4  CPU:  4
+Test passed: count_live_cell(a) returned 49
+Obtained in 1.611444 seconds, rank=0
+Obtained in 1.611444 seconds
+Obtained in 1.611454 seconds, rank=1
+DONE
+Nodes:  1  Tasks:  2  THREADS:  8  CPU:  8
+Test passed: count_live_cell(a) returned 49
+Obtained in 1.632534 seconds, rank=0
+Obtained in 1.632534 seconds
+Obtained in 1.632423 seconds, rank=1
+DONE
+Nodes:  1  Tasks:  4  THREADS:  1  CPU:  1
+DONE
+Nodes:  1  Tasks:  4  THREADS:  2  CPU:  2
+DONE
+Nodes:  1  Tasks:  4  THREADS:  4  CPU:  4
+Obtained in 0.433014 seconds, rank=1
+Obtained in 0.434355 seconds, rank=2
+Obtained in 0.435697 seconds, rank=3
+Test passed: count_live_cell(a) returned 49
+Obtained in 0.435524 seconds, rank=0
+Obtained in 0.435524 seconds
+DONE
+Nodes:  1  Tasks:  8  THREADS:  1  CPU:  1
+DONE
+Nodes:  1  Tasks:  8  THREADS:  2  CPU:  2
+DONE
+Nodes:  2  Tasks:  2  THREADS:  1  CPU:  1
+DONE
+Nodes:  2  Tasks:  2  THREADS:  2  CPU:  2
+Test passed: count_live_cell(a) returned 49
+Obtained in 1.612200 seconds, rank=0
+Obtained in 1.612200 seconds
+Obtained in 1.612210 seconds, rank=1
+DONE
+Nodes:  2  Tasks:  2  THREADS:  4  CPU:  4
+Obtained in 1.674045 seconds, rank=1
+Test passed: count_live_cell(a) returned 49
+Obtained in 1.674029 seconds, rank=0
+Obtained in 1.674029 seconds
+DONE
+Nodes:  2  Tasks:  2  THREADS:  8  CPU:  8
+Obtained in 1.614999 seconds, rank=1
+Test passed: count_live_cell(a) returned 49
+Obtained in 1.615129 seconds, rank=0
+Obtained in 1.615129 seconds
+DONE
+Nodes:  2  Tasks:  2  THREADS:  16  CPU:  16
+Obtained in 1.616299 seconds, rank=1
+Test passed: count_live_cell(a) returned 49
+Obtained in 1.616307 seconds, rank=0
+Obtained in 1.616307 seconds
+DONE
+Nodes:  2  Tasks:  4  THREADS:  1  CPU:  1
+DONE
+Nodes:  2  Tasks:  4  THREADS:  2  CPU:  2
+DONE
+Nodes:  2  Tasks:  4  THREADS:  4  CPU:  4
+Obtained in 0.426673 seconds, rank=1
+Obtained in 0.427920 seconds, rank=2
+Obtained in 0.429389 seconds, rank=3
+Test passed: count_live_cell(a) returned 49
+Obtained in 0.429231 seconds, rank=0
+Obtained in 0.429231 seconds
+DONE
+Nodes:  2  Tasks:  4  THREADS:  8  CPU:  8
+Obtained in 1.087893 seconds, rank=1
+Obtained in 1.091401 seconds, rank=2
+Obtained in 1.092727 seconds, rank=3
+Test passed: count_live_cell(a) returned 49
+Obtained in 1.098405 seconds, rank=0
+Obtained in 1.098405 seconds
+DONE
+Nodes:  2  Tasks:  8  THREADS:  1  CPU:  1
+DONE
+Nodes:  2  Tasks:  8  THREADS:  2  CPU:  2
+DONE
+Nodes:  2  Tasks:  8  THREADS:  4  CPU:  4
+DONE
+Nodes:  4  Tasks:  4  THREADS:  1  CPU:  1
+DONE
+Nodes:  4  Tasks:  4  THREADS:  2  CPU:  2
+DONE
+Nodes:  4  Tasks:  4  THREADS:  4  CPU:  4
+Obtained in 0.418741 seconds, rank=1
+Obtained in 0.420166 seconds, rank=2
+Obtained in 0.421415 seconds, rank=3
+Test passed: count_live_cell(a) returned 49
+Obtained in 0.421491 seconds, rank=0
+Obtained in 0.421491 seconds
+DONE
+Nodes:  4  Tasks:  4  THREADS:  8  CPU:  8
+Obtained in 1.096008 seconds, rank=1
+Obtained in 1.106974 seconds, rank=2
+Obtained in 1.108050 seconds, rank=3
+Test passed: count_live_cell(a) returned 49
+Obtained in 1.108158 seconds, rank=0
+Obtained in 1.108158 seconds
+DONE
+Nodes:  4  Tasks:  4  THREADS:  16  CPU:  16
+Obtained in 2.370792 seconds, rank=1
+Obtained in 2.398523 seconds, rank=2
+Obtained in 2.409870 seconds, rank=3
+Test passed: count_live_cell(a) returned 49
+Obtained in 2.409881 seconds, rank=0
+Obtained in 2.409881 seconds
+DONE
+Nodes:  4  Tasks:  8  THREADS:  1  CPU:  1
+DONE
+Nodes:  4  Tasks:  8  THREADS:  2  CPU:  2
+DONE
+Nodes:  4  Tasks:  8  THREADS:  4  CPU:  4
+DONE
+Nodes:  4  Tasks:  8  THREADS:  8  CPU:  8
+Obtained in 2.726050 seconds, rank=1
+Obtained in 2.727437 seconds, rank=2
+Obtained in 2.727603 seconds, rank=3
+Obtained in 2.758570 seconds, rank=7
+Obtained in 2.758402 seconds, rank=6
+Obtained in 2.765857 seconds, rank=5
+Test passed: count_live_cell(a) returned 49
+Obtained in 2.765905 seconds, rank=4
+Obtained in 2.766473 seconds, rank=0
+Obtained in 2.766473 seconds
+DONE
+Nodes:  8  Tasks:  8  THREADS:  1  CPU:  1
+DONE
+Nodes:  8  Tasks:  8  THREADS:  2  CPU:  2
+DONE
+Nodes:  8  Tasks:  8  THREADS:  4  CPU:  4
+DONE
+Nodes:  8  Tasks:  8  THREADS:  8  CPU:  8
+Obtained in 2.660571 seconds, rank=1
+Obtained in 2.661970 seconds, rank=2
+Obtained in 2.662026 seconds, rank=3
+Obtained in 2.669541 seconds, rank=5
+Obtained in 2.671051 seconds, rank=7
+Obtained in 2.671103 seconds, rank=6
+Obtained in 2.670952 seconds, rank=4
+Test passed: count_live_cell(a) returned 49
+Obtained in 2.670907 seconds, rank=0
+Obtained in 2.670907 seconds
+DONE
+Nodes:  8  Tasks:  8  THREADS:  16  CPU:  16
+Obtained in 5.516531 seconds, rank=3
+Obtained in 5.532238 seconds, rank=2
+Obtained in 5.549131 seconds, rank=1
+Obtained in 5.552930 seconds, rank=5
+Obtained in 5.565871 seconds, rank=7
+Obtained in 5.565746 seconds, rank=4
+Obtained in 5.565897 seconds, rank=6
+Test passed: count_live_cell(a) returned 49
+Obtained in 5.565913 seconds, rank=0
+Obtained in 5.565913 seconds
+DONE
