@@ -102,6 +102,9 @@ void calculate_next_generation(int a[][COL]) {
     }
     // Gather all the results from each process to the root process
     MPI_Gather(new_b[start_row], rows_per_proc*COL, MPI_INT, new_b, rows_per_proc*COL, MPI_INT, 0, MPI_COMM_WORLD);
+
+    // notice that for the upper for loop, the index is from start_row to end_row, but here, index is from 0 to ROW
+    // correct? if correct? fast or slow ???
     for (int i = 0; i < ROW; i++){
         for (int j = 0; j < COL; j++){
             a[i][j] = new_b[i][j];
