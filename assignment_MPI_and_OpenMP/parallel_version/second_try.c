@@ -50,9 +50,10 @@ int count_live_neighbour_cell(int *sub_data, int r, int c)
     }
     return count;
 }
-void calculate_next_generation(int *sub_data) {
+
+void calculate_next_generation(int *sub_data, int* result) {
     
-    int * result=(int*)malloc(sizeof(int) * (rows_per_proc+2) * COL);
+    
     memset(result, 0, (rows_per_proc+2) * COL* sizeof(int));
     int neighbour_live_cell;
 
@@ -73,8 +74,7 @@ void calculate_next_generation(int *sub_data) {
             }
         }
     }
-    // Gather all the results from each process to the root process
-    MPI_Gather(&result[1], rows_per_proc*COL, MPI_INT, A, rows_per_proc*COL, MPI_INT, 0, MPI_COMM_WORLD);
+
 }
 void insert_pattern(uint8_t pattern[][PATTERN_COL], int *canvas, int pattern_row, int pattern_col, int canvas_row, int canvas_col, int start_row, int start_col) {
     for (int i = 0; i < pattern_row; i++) {
@@ -142,10 +142,13 @@ int main()
     double start,end;
     start=omp_get_wtime();
      // Gameplay
+    int * sub_data = (int*)malloc(sizeof(int) * (rows_per_proc+2) * COL);
+    int * result=(int*)malloc(sizeof(int) * (rows_per_proc+2) * COL);
+    memset(sub_data, 0, sizeof(int) * (rows_per_proc + 2) * COL);
+    memset(result, 0, sizeof(int) * (rows_per_proc + 2) * COL);
+    MPI_Scatter(A, (rows_per_proc) * COL, MPI_INT, &sub_data[ROW], (rows_per_proc) * COL, MPI_INT, 0, MPI_COMM_WORLD);
     for (int i = 0; i < GENERATION; i++){
-        int * sub_data = (int*)malloc(sizeof(int) * (rows_per_proc+2) * COL);
-        memset(sub_data, 0, sizeof(int) * (rows_per_proc + 2) * COL);
-        MPI_Scatter(A, (rows_per_proc) * COL, MPI_INT, &sub_data[ROW], (rows_per_proc) * COL, MPI_INT, 0, MPI_COMM_WORLD);
+        
         // printf("A is scatterred successfully! rank=%d\n",rank);
 
         int top_neighbour = rank-1;
@@ -157,8 +160,14 @@ int main()
             MPI_Sendrecv(&sub_data[(rows_per_proc)*ROW], ROW, MPI_INT, bot_neighbour, 0,&sub_data[(rows_per_proc+1)*ROW], ROW, MPI_INT, bot_neighbour, MPI_ANY_TAG,MPI_COMM_WORLD, MPI_STATUS_IGNORE);
         }
         // printf("sub_data is initialized successfully! rank=%d\n",rank);
-        calculate_next_generation(sub_data);
+        
+        calculate_next_generation(sub_data,result);
+        int *temp = sub_data;
+        sub_data = result;
+        result = temp;
     }
+    // Gather all the results from each process to the root process
+    MPI_Gather(&sub_data[ROW], rows_per_proc*COL, MPI_INT, A, rows_per_proc*COL, MPI_INT, 0, MPI_COMM_WORLD);
     if(rank==0){
         // printf("test part has reached!\n");
         test_count_live_cell(A,GENERATION);
