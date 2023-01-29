@@ -8,10 +8,12 @@
 #include "./headers/glider.h"
 #include "./headers/grower.h"
 
+// number of cells per row and column
 #ifndef N
 #define N 3000
 #endif
 
+// Translating a (row, column) value into correct index in array
 #define INDEX(i, j) (((i)*N)+(j))
 
 #define ROW (N)
@@ -36,7 +38,6 @@ int is_border(int i,int j){
     return -1;
 }
  
-// returns the count of alive neighbours
 /**
  * @brief count the number of alive neigbouring cells to a given cell.
  * Uses a double for loop to go through the different row and column values around the given cell.
@@ -97,16 +98,16 @@ void init_board(int *a, int size){
         a[i] = 0;
     }
      //memset maybe more faster ???
-    
 }
 
 /**
  * @brief Calculates the next generation of cells.
- * <add a bit more detail of how we do it>
+ * Double for loop that goes through all columns in a given amount of rows. 
+ * Then counting neighbours and checking if that cell should be alive or dead for the next generation.
  * 
  * @param a current board generation
  * @param b next board generation
- * @param rows_per_proc ?
+ * @param rows_per_proc the number of rows to calculate
  */
 void calculate_next_generation(int *a, int *b, int rows_per_proc) {
     //init_canvas(b);
@@ -130,14 +131,13 @@ void calculate_next_generation(int *a, int *b, int rows_per_proc) {
         }
     }
     // Gather all the results from each process to the root process
-    //MPI_Gather(b[start_row], rows_per_proc*COL, MPI_INT, b, rows_per_proc*COL, MPI_INT, 0, MPI_COMM_WORLD);
-    
+    //MPI_Gather(b[start_row], rows_per_proc*COL, MPI_INT, b, rows_per_proc*COL, MPI_INT, 0, MPI_COMM_WORLD);  
 }
 
 /**
  * @brief Inserts a pattern of cells into the board
  * 
- * @param pattern 
+ * @param pattern uint8_t pattern to be insertet in the board
  * @param board 
  * @param pattern_row number of row in the pattern
  * @param pattern_col number of columns in the pattern
@@ -205,8 +205,8 @@ int main(){
 
     //error handling
     int error = MPI_Comm_set_errhandler(MPI_COMM_WORLD, MPI_ERRORS_RETURN);
-    printf("error:\n");
-    printf(error);
+    printf("error:\n %d", error);
+    //printf(error);
     
     int rows_per_proc = (int)ceil((double)ROW / num_procs);//ver
     int row_size = (rows_per_proc+2) * ROW;
@@ -221,10 +221,16 @@ int main(){
     B = (int*)malloc(BOARD_SIZE*sizeof(int));
     C = (int*)malloc(row_size*sizeof(int));//local
     D = (int*)malloc(row_size*sizeof(int));
+    // If an error occur with one of the memery allocation, stop running.
+    if (A == NULL || B == NULL || C == NULL || D == NULL){
+        perror();
+        return EXIT_FAILURE;
+    }
+
     init_board(C,row_size);
     init_board(D,row_size);
     
-    //INI
+    //INIT: Initalizing start of a new game by initalizing a board and inserting pattern.
     if (rank == 0) {
         int i;
         init_board(A,BOARD_SIZE);
@@ -242,13 +248,14 @@ int main(){
         //For each processor, there is a local matrix.
         MPI_Recv(&C[ROW], rows_per_proc * ROW, MPI_INT, 0, 1, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
     }
+
     double start,end;
-    
     start=MPI_Wtime();
 
     int top_neighbour = rank-1;
     int bot_neighbour = rank+1;
     
+    // Gameplay
     for (int i = 0; i < GENERATION; i++)
     {
         // top
@@ -271,14 +278,14 @@ int main(){
         }
     }
     
-    
     if (rank == 0) {
         memcpy(A, &C[ROW], rows_per_proc * ROW * sizeof(int));
         for (int proc = 1; proc < num_procs; proc++) {
             MPI_Recv(&A[proc*rows_per_proc*ROW], rows_per_proc*ROW, MPI_INT, proc, 1, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
         }
         //display(A);
-        //test
+    
+    //test
 	if(GENERATION!=5000){
             test_count_live_cell(A,GENERATION);
 	}
