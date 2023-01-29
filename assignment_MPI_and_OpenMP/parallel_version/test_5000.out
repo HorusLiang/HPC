@@ -1,0 +1,44 @@
+OpenMP and MPI parallelism
+
+Nodes:  1  Tasks:  1  THREADS:  1  CPU:  1
+# of cell alive in the 5000th generation: 3647Obtained in 1578.508365 seconds, rank=0
+DONE
+Nodes:  1  Tasks:  1  THREADS:  2  CPU:  2
+# of cell alive in the 5000th generation: 3647Obtained in 1579.326229 seconds, rank=0
+DONE
+Nodes:  1  Tasks:  1  THREADS:  4  CPU:  4
+# of cell alive in the 5000th generation: 3647Obtained in 1580.589001 seconds, rank=0
+DONE
+Nodes:  1  Tasks:  1  THREADS:  8  CPU:  8
+# of cell alive in the 5000th generation: 3647Obtained in 1581.644692 seconds, rank=0
+DONE
+Nodes:  1  Tasks:  1  THREADS:  16  CPU:  16
+# of cell alive in the 5000th generation: 3647Obtained in 1582.374580 seconds, rank=0
+DONE
+Nodes:  1  Tasks:  2  THREADS:  2  CPU:  2
+# of cell alive in the 5000th generation: 3647Obtained in 793.858788 seconds, rank=0
+DONE
+Nodes:  1  Tasks:  2  THREADS:  4  CPU:  4
+# of cell alive in the 5000th generation: 3647Obtained in 793.853634 seconds, rank=0
+DONE
+Nodes:  1  Tasks:  2  THREADS:  8  CPU:  8
+# of cell alive in the 5000th generation: 3647Obtained in 793.879656 seconds, rank=0
+DONE
+Nodes:  1  Tasks:  4  THREADS:  4  CPU:  4
+# of cell alive in the 5000th generation: 3645Obtained in 124.880258 seconds, rank=0
+DONE
+Nodes:  2  Tasks:  2  THREADS:  2  CPU:  2
+# of cell alive in the 5000th generation: 3647Obtained in 792.870866 seconds, rank=0
+DONE
+Nodes:  2  Tasks:  2  THREADS:  4  CPU:  4
+# of cell alive in the 5000th generation: 3647Obtained in 792.705847 seconds, rank=0
+DONE
+Nodes:  2  Tasks:  2  THREADS:  8  CPU:  8
+# of cell alive in the 5000th generation: 3647Obtained in 793.285833 seconds, rank=0
+DONE
+Nodes:  2  Tasks:  4  THREADS:  4  CPU:  4
+# of cell alive in the 5000th generation: 3647Obtained in 124.589380 seconds, rank=0
+DONE
+Nodes:  4  Tasks:  4  THREADS:  4  CPU:  4
+# of cell alive in the 5000th generation: 3647Obtained in 124.804433 seconds, rank=0
+DONE
