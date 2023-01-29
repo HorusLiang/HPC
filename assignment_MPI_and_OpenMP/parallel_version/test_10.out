@@ -1,0 +1,58 @@
+OpenMP and MPI parallelism
+
+Nodes:  1  Tasks:  1  THREADS:  1  CPU:  1
+Test passed: count_live_cell(a) returned 49
+Obtained in 3.213701 seconds, rank=0
+DONE
+Nodes:  1  Tasks:  1  THREADS:  2  CPU:  2
+Test passed: count_live_cell(a) returned 49
+Obtained in 3.201869 seconds, rank=0
+DONE
+Nodes:  1  Tasks:  1  THREADS:  4  CPU:  4
+Test passed: count_live_cell(a) returned 49
+Obtained in 3.190459 seconds, rank=0
+DONE
+Nodes:  1  Tasks:  1  THREADS:  8  CPU:  8
+Test passed: count_live_cell(a) returned 49
+Obtained in 3.194718 seconds, rank=0
+DONE
+Nodes:  1  Tasks:  1  THREADS:  16  CPU:  16
+Test passed: count_live_cell(a) returned 49
+Obtained in 3.195375 seconds, rank=0
+DONE
+Nodes:  1  Tasks:  2  THREADS:  2  CPU:  2
+Test passed: count_live_cell(a) returned 49
+Obtained in 1.614851 seconds, rank=0
+DONE
+Nodes:  1  Tasks:  2  THREADS:  4  CPU:  4
+Test passed: count_live_cell(a) returned 49
+Obtained in 1.616803 seconds, rank=0
+DONE
+Nodes:  1  Tasks:  2  THREADS:  8  CPU:  8
+Test passed: count_live_cell(a) returned 49
+Obtained in 1.620500 seconds, rank=0
+DONE
+Nodes:  1  Tasks:  4  THREADS:  4  CPU:  4
+Test passed: count_live_cell(a) returned 49
+Obtained in 0.294522 seconds, rank=0
+DONE
+Nodes:  2  Tasks:  2  THREADS:  2  CPU:  2
+Test passed: count_live_cell(a) returned 49
+Obtained in 1.617311 seconds, rank=0
+DONE
+Nodes:  2  Tasks:  2  THREADS:  4  CPU:  4
+Test passed: count_live_cell(a) returned 49
+Obtained in 1.621058 seconds, rank=0
+DONE
+Nodes:  2  Tasks:  2  THREADS:  8  CPU:  8
+Test passed: count_live_cell(a) returned 49
+Obtained in 1.617198 seconds, rank=0
+DONE
+Nodes:  2  Tasks:  4  THREADS:  4  CPU:  4
+Test passed: count_live_cell(a) returned 49
+Obtained in 0.274635 seconds, rank=0
+DONE
+Nodes:  4  Tasks:  4  THREADS:  4  CPU:  4
+Test passed: count_live_cell(a) returned 49
+Obtained in 0.274277 seconds, rank=0
+DONE
