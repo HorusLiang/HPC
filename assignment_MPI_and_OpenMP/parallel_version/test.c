@@ -65,6 +65,7 @@ void init_board(int *a, int size){
     {
         a[i] = 0;
     }
+     //memset maybe more faster ???
     
 }
 
@@ -153,6 +154,9 @@ int main()
     
     int rows_per_proc = (int)ceil((double)ROW / num_procs);//ver
     int row_size = (rows_per_proc+2) * ROW;
+
+    //unit8 may be used to reduce the consumption of memory ???
+    // b is not used in the following code
     int *A = NULL; 
     int *B = NULL; 
     int *C = NULL;
@@ -171,7 +175,7 @@ int main()
         //init_board(B,BOARD_SIZE);
         insert_pattern(grower,A,PATTERN_ROW,PATTERN_COL,ROW,COL,1500,1500);
  
-        memcpy(&C[N], &A[0], rows_per_proc * ROW * sizeof(int));//??
+        memcpy(&C[N], &A[0], rows_per_proc * ROW * sizeof(int));//??? ROW->COL ???
         for (int proc = 1; proc < num_procs; proc++) {
             //MPI_Send(&global_matrix[dir*ver*MAX_N], ver * MAX_N, MPI_INT, dir, 1, MPI_COMM_WORLD);
             MPI_Send(&A[proc*rows_per_proc*ROW], rows_per_proc * ROW, MPI_INT, proc, 1, MPI_COMM_WORLD);
