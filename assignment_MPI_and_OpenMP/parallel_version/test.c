@@ -221,7 +221,7 @@ int main(){
     B = (int*)malloc(BOARD_SIZE*sizeof(int));
     C = (int*)malloc(row_size*sizeof(int));//local
     D = (int*)malloc(row_size*sizeof(int));
-    // If an error occur with one of the memery allocation, stop running.
+    // If an error occurs with one of the memery allocations, stop running.
     if (A == NULL || B == NULL || C == NULL || D == NULL){
         perror();
         return EXIT_FAILURE;
