@@ -221,7 +221,7 @@ int main(){
     B = (int*)malloc(BOARD_SIZE*sizeof(int));
     C = (int*)malloc(row_size*sizeof(int));//local
     D = (int*)malloc(row_size*sizeof(int));
-    // If an error occurs with one of the memery allocations, stop running.
+    // If an error occurs with one of the memory allocations, stop running.
     if (A == NULL || B == NULL || C == NULL || D == NULL){
         perror("Error: ");
         return EXIT_FAILURE;
@@ -285,13 +285,13 @@ int main(){
         }
         //display(A);
     
-    //test
-	if(GENERATION!=5000){
-            test_count_live_cell(A,GENERATION);
-	}
-	else{
-	    printf("# of cell alive in the 5000th generation: %d\n",count_live_cell(A,BOARD_SIZE));
-	}
+        //test
+        if(GENERATION!=5000){
+                test_count_live_cell(A,GENERATION);
+        }
+        else{
+            printf("# of cell alive in the 5000th generation: %d\n",count_live_cell(A,BOARD_SIZE));
+        }
     }
     else {
         MPI_Send(&C[ROW], rows_per_proc*ROW, MPI_INT, 0, 1, MPI_COMM_WORLD);
