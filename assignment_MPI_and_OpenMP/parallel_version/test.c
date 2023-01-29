@@ -223,7 +223,7 @@ int main(){
     D = (int*)malloc(row_size*sizeof(int));
     // If an error occurs with one of the memery allocations, stop running.
     if (A == NULL || B == NULL || C == NULL || D == NULL){
-        perror();
+        perror("Error: ");
         return EXIT_FAILURE;
     }
 
