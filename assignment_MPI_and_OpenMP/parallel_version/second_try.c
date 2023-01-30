@@ -15,7 +15,7 @@ const int COL = N;
 #define INDEX(i, j) (((i)*COL)+(j))
 
 #define BOARD_SIZE (ROW*COL)
-#define GENERATION (100)
+#define GENERATION (10)
 const int PATTERN_ROW=GROWER_HEIGHT;
 const int PATTERN_COL=GROWER_WIDTH;
 
@@ -77,6 +77,7 @@ void calculate_next_generation(int *sub_data, int* result) {
 
 }
 void insert_pattern(uint8_t pattern[][PATTERN_COL], int *canvas, int pattern_row, int pattern_col, int canvas_row, int canvas_col, int start_row, int start_col) {
+    #pragma omp parallel for
     for (int i = 0; i < pattern_row; i++) {
         for (int j = 0; j < pattern_col; j++) {
             canvas[INDEX(i + start_row,j + start_col)] = pattern[i][j];
@@ -108,6 +109,9 @@ void test_count_live_cell(int *a, int generation) {
     }
     if(generation==2){
         expected_output=24;
+    }
+    if(generation==5000){
+        expected_output=3647;
     }
 	if (final_output == expected_output) {
 	    printf("Test passed: count_live_cell(a) returned %d, # of cell alive in the %dth generation\n", final_output,generation);
